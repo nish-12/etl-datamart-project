@@ -1,5 +1,6 @@
 import base64
 from Cryptodome.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
 from Cryptodome.Protocol.KDF import PBKDF2
 import os, sys
 from resources.dev import config
@@ -37,3 +38,6 @@ def encrypt(raw):
 def decrypt(enc):
     cipher = AES.new(get_private_key(), AES.MODE_CBC, iv.encode('utf-8'))
     return unpad(cipher.decrypt(base64.b64decode(enc))).decode('utf8')
+
+
+print(encrypt("3n4L+csb82QH81kBmbl1X7L2rXzJT7Uf1U7GPK+Z"))
